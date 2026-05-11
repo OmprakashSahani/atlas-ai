@@ -5,6 +5,8 @@
 
 </div>
 
+---
+
 Atlas AI is an open machine learning systems platform focused on:
 
 - Distributed training infrastructure
@@ -151,6 +153,44 @@ The project is built from first principles to explore how modern AI systems beha
 
 ---
 
+## Infrastructure Screenshots
+
+### FastAPI Inference API
+
+![FastAPI Docs](assets/screenshots/fastapi-docs.png)
+
+---
+
+### Transformer Dashboard Metrics
+
+![Dashboard Metrics](assets/screenshots/dashboard-api.png)
+
+---
+
+### Serving Metrics
+
+![Serving Metrics](assets/screenshots/metrics-api.png)
+
+---
+
+### CI Performance Automation
+
+![GitHub Actions CI](assets/screenshots/github-actions-ci.png)
+
+---
+
+### Transformer Benchmark Runtime
+
+![Transformer Benchmark Runtime](assets/screenshots/transformer-benchmark-terminal.png)
+
+---
+
+### Streaming Token Generation
+
+![Streaming Generation](assets/screenshots/streaming-generation.png)
+
+---
+
 ## Example Capabilities
 
 ### Run Distributed Runtime
@@ -165,14 +205,22 @@ atlas run-distributed
 atlas train
 ```
 
-### Run Benchmarks
+### Run Optimizer Benchmark
 
 ```bash
 PYTHONPATH=. python scripts/benchmark_optimizers.py
 ```
 
+### Run Transformer Generation Benchmark
+
 ```bash
 PYTHONPATH=. python scripts/benchmark_transformer_generation.py
+```
+
+### Start Inference Server
+
+```bash
+uvicorn src.atlas_ai.serving.inference_server:app --host 0.0.0.0 --port 8000
 ```
 
 ---
@@ -195,6 +243,37 @@ GET /metrics
 
 ```text
 GET /dashboard
+```
+
+---
+
+## Example Systems Diagnostics
+
+### Distributed Runtime
+
+```text
+Atlas AI — Distributed Runtime
+----------------------------------------
+num_workers: 4
+total_runtime_sec: 1.823
+
+Worker Results:
+worker_id=0 execution_time_sec=1.7293
+worker_id=3 execution_time_sec=1.7462
+worker_id=1 execution_time_sec=1.793
+worker_id=2 execution_time_sec=1.8179
+```
+
+---
+
+### Transformer Generation Benchmark
+
+```text
+tokens=1  latency=0.000113  throughput=8840.87
+tokens=2  latency=0.000243  throughput=8235.43
+tokens=4  latency=0.000505  throughput=7916.98
+tokens=8  latency=0.001791  throughput=4465.70
+tokens=16 latency=0.013770  throughput=1161.94
 ```
 
 ---
@@ -264,6 +343,21 @@ GitHub Actions automatically:
 - Runs tests
 - Executes benchmarks
 - Validates infrastructure behavior
+
+---
+
+## Technical Highlights
+
+- 37+ automated tests
+- Transformer inference benchmarking
+- KV-cache simulation infrastructure
+- Streaming token generation
+- Distributed runtime execution
+- Communication cost profiling
+- Historical benchmark persistence
+- Performance regression detection
+- CI benchmark automation
+- Transformer memory diagnostics
 
 ---
 

@@ -6,11 +6,11 @@ from atlas_ai.distributed.distributed_simulator import (
 )
 from atlas_ai.profiler.system_profiler import get_system_profile
 from atlas_ai.tracker.experiment_tracker import ExperimentTracker
+from atlas_ai.training.simple_trainer import SimpleTrainer
 
 
 def show_system_profile() -> None:
     """Display system profile."""
-
     profile = get_system_profile()
 
     print("Atlas AI — System Profile")
@@ -22,7 +22,6 @@ def show_system_profile() -> None:
 
 def create_experiment_run(name: str) -> None:
     """Create a new experiment run."""
-
     tracker = ExperimentTracker()
 
     run_id = tracker.create_run(
@@ -36,15 +35,12 @@ def create_experiment_run(name: str) -> None:
 
 def run_benchmark() -> None:
     """Run a sample benchmark."""
-
     runner = BenchmarkRunner()
 
     def workload():
         total = 0
-
         for i in range(100000):
             total += i
-
         return total
 
     results = runner.run(workload, num_runs=10)
@@ -58,7 +54,6 @@ def run_benchmark() -> None:
 
 def run_distributed_simulation() -> None:
     """Run distributed training simulation."""
-
     simulator = DistributedTrainingSimulator()
 
     results = simulator.simulate_step(
@@ -75,6 +70,23 @@ def run_distributed_simulation() -> None:
         print(f"{key}: {value}")
 
 
+def run_training() -> None:
+    """Run simple model training."""
+    trainer = SimpleTrainer(
+        learning_rate=0.01,
+        epochs=100,
+    )
+
+    results = trainer.train()
+
+    print("Atlas AI — Training Results")
+    print("-" * 36)
+
+    for key, value in results.items():
+        if key != "loss_history":
+            print(f"{key}: {value}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Atlas AI CLI")
 
@@ -83,6 +95,7 @@ def main() -> None:
     subparsers.add_parser("profile")
     subparsers.add_parser("benchmark")
     subparsers.add_parser("simulate-distributed")
+    subparsers.add_parser("train")
 
     run_parser = subparsers.add_parser("create-run")
     run_parser.add_argument("--name", required=True)
@@ -91,16 +104,14 @@ def main() -> None:
 
     if args.command == "profile":
         show_system_profile()
-
     elif args.command == "create-run":
         create_experiment_run(args.name)
-
     elif args.command == "benchmark":
         run_benchmark()
-
     elif args.command == "simulate-distributed":
         run_distributed_simulation()
-
+    elif args.command == "train":
+        run_training()
     else:
         parser.print_help()
 

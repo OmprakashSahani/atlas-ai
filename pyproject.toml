@@ -1,0 +1,23 @@
+[project]
+name = "atlas-ai"
+version = "0.1.0"
+description = "Open ML systems platform for training, profiling, evaluating, and serving AI models."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[project.scripts]
+atlas = "atlas_ai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"

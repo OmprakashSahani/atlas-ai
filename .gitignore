@@ -219,3 +219,6 @@ __marimo__/
 
 # Experiment outputs
 runs/
+
+# Model checkpoints
+checkpoints/

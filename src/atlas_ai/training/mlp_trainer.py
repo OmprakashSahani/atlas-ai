@@ -1,8 +1,7 @@
 from atlas_ai.autograd.value import Value
+from atlas_ai.checkpoint.checkpoint_manager import CheckpointManager
 from atlas_ai.nn.modules import MLP
-from atlas_ai.tracker.experiment_tracker import (
-    ExperimentTracker,
-)
+from atlas_ai.tracker.experiment_tracker import ExperimentTracker
 
 
 class MLPTrainer:
@@ -19,7 +18,6 @@ class MLPTrainer:
         self.epochs = epochs
 
     def train(self):
-
         tracker = ExperimentTracker()
 
         run_id = tracker.create_run(
@@ -42,15 +40,11 @@ class MLPTrainer:
         loss_history = []
 
         for epoch in range(self.epochs):
-
             predictions = []
 
             for x, _ in training_data:
-
                 inputs = [Value(v) for v in x]
-
                 prediction = model(inputs)
-
                 predictions.append(prediction)
 
             losses = []
@@ -59,13 +53,8 @@ class MLPTrainer:
                 predictions,
                 training_data,
             ):
-
                 target_value = Value(target)
-
-                loss = (
-                    prediction - target_value
-                ) ** 2
-
+                loss = (prediction - target_value) ** 2
                 losses.append(loss)
 
             total_loss = sum(
@@ -97,11 +86,19 @@ class MLPTrainer:
             value=loss_history[-1],
         )
 
+        checkpoint_manager = CheckpointManager()
+
+        checkpoint_path = checkpoint_manager.save_checkpoint(
+            model,
+            "trained_mlp",
+        )
+
         return {
             "run_id": run_id,
             "final_loss": round(
                 loss_history[-1],
                 6,
             ),
+            "checkpoint_path": checkpoint_path,
             "loss_history": loss_history,
         }

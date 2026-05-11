@@ -6,7 +6,7 @@ from atlas_ai.distributed.distributed_simulator import (
 )
 from atlas_ai.profiler.system_profiler import get_system_profile
 from atlas_ai.tracker.experiment_tracker import ExperimentTracker
-from atlas_ai.training.simple_trainer import SimpleTrainer
+from atlas_ai.training.mlp_trainer import MLPTrainer
 
 
 def show_system_profile() -> None:
@@ -71,16 +71,16 @@ def run_distributed_simulation() -> None:
 
 
 def run_training() -> None:
-    """Run simple model training."""
-    trainer = SimpleTrainer(
-        learning_rate=0.01,
-        epochs=100,
+    """Run MLP training with checkpointing."""
+    trainer = MLPTrainer(
+        learning_rate=0.05,
+        epochs=50,
     )
 
     results = trainer.train()
 
-    print("Atlas AI — Training Results")
-    print("-" * 36)
+    print("Atlas AI — MLP Training Results")
+    print("-" * 40)
 
     for key, value in results.items():
         if key != "loss_history":

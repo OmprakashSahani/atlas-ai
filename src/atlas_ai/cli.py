@@ -4,6 +4,7 @@ from atlas_ai.benchmark.benchmark_runner import BenchmarkRunner
 from atlas_ai.distributed.distributed_simulator import (
     DistributedTrainingSimulator,
 )
+from atlas_ai.distributed.runtime.distributed_trainer import DistributedTrainer
 from atlas_ai.profiler.system_profiler import get_system_profile
 from atlas_ai.tracker.experiment_tracker import ExperimentTracker
 from atlas_ai.training.mlp_trainer import MLPTrainer
@@ -70,6 +71,26 @@ def run_distributed_simulation() -> None:
         print(f"{key}: {value}")
 
 
+def run_distributed_runtime() -> None:
+    """Run multiprocessing distributed runtime."""
+    trainer = DistributedTrainer(num_workers=4)
+
+    results = trainer.run()
+
+    print("Atlas AI — Distributed Runtime")
+    print("-" * 40)
+
+    print(f"num_workers: {results['num_workers']}")
+    print(f"total_runtime_sec: {results['total_runtime_sec']}")
+
+    print("\nWorker Results:")
+    for worker in results["worker_results"]:
+        print(
+            f"worker_id={worker['worker_id']} "
+            f"execution_time_sec={worker['execution_time_sec']}"
+        )
+
+
 def run_training() -> None:
     """Run MLP training with checkpointing."""
     trainer = MLPTrainer(
@@ -95,6 +116,7 @@ def main() -> None:
     subparsers.add_parser("profile")
     subparsers.add_parser("benchmark")
     subparsers.add_parser("simulate-distributed")
+    subparsers.add_parser("run-distributed")
     subparsers.add_parser("train")
 
     run_parser = subparsers.add_parser("create-run")
@@ -110,6 +132,8 @@ def main() -> None:
         run_benchmark()
     elif args.command == "simulate-distributed":
         run_distributed_simulation()
+    elif args.command == "run-distributed":
+        run_distributed_runtime()
     elif args.command == "train":
         run_training()
     else:

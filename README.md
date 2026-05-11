@@ -1,59 +1,296 @@
+<div align="center">
+
 # Atlas AI
+### Distributed AI Infrastructure · Transformer Systems · Performance Engineering
 
-**Atlas AI** is an open ML systems platform for training, profiling, evaluating, and serving AI models.
+</div>
 
-The goal of this project is to study how machine learning systems behave under real engineering constraints such as compute, memory, communication, latency, and reproducibility.
+Atlas AI is an open machine learning systems platform focused on:
 
-## Current Status
+- Distributed training infrastructure
+- Transformer systems engineering
+- Inference optimization
+- Performance benchmarking
+- Observability and diagnostics
+- AI infrastructure research
 
-Atlas AI currently includes:
+The project is built from first principles to explore how modern AI systems behave under real engineering constraints such as:
 
-- Python package structure
-- Command-line interface
-- Basic system information collection
-- Automated test setup
+- Memory scaling
+- Communication overhead
+- Synchronization cost
+- Inference latency
+- Throughput efficiency
+- Transformer cache growth
 
-## Quick Start
+---
 
-```bash
-python -m pip install -e ".[dev]"
-atlas
-pytest
-````
+## Core Systems
 
-## Current CLI Output
+### Deep Learning Infrastructure
+
+- Reverse-mode autograd engine
+- Neural network framework
+- MLP training runtime
+- Optimizer abstractions (SGD + Momentum)
+- Checkpointing system
+
+---
+
+### Transformer Infrastructure
+
+- Token embeddings
+- Positional encoding
+- Self-attention
+- Transformer blocks
+- Tiny transformer model
+- KV-cache system
+- Autoregressive decoding
+- Streaming token generation
+
+---
+
+### Distributed Systems
+
+- Multiprocessing distributed runtime
+- Gradient synchronization
+- Communication profiling
+- Distributed scaling simulation
+- Runtime scaling benchmarks
+
+---
+
+### Serving & Observability
+
+- FastAPI inference server
+- Inference latency monitoring
+- Transformer memory diagnostics
+- Dashboard metrics
+- Historical benchmark persistence
+- Regression detection infrastructure
+
+---
+
+### Performance Engineering
+
+- Optimizer benchmarking
+- Distributed runtime benchmarking
+- Transformer generation benchmarking
+- Memory profiling
+- CI performance automation
+
+---
+
+## Architecture Overview
 
 ```text
-Atlas AI — System Info
-----------------------------
-python_version: 3.12.1
-platform: Linux-6.8.0-1044-azure-x86_64-with-glibc2.39
-processor: x86_64
-machine: x86_64
+                        ┌────────────────────┐
+                        │  Transformer Stack │
+                        │--------------------│
+                        │ Embeddings         │
+                        │ Positional Encoding│
+                        │ Self-Attention     │
+                        │ Transformer Blocks │
+                        │ KV Cache           │
+                        └─────────┬──────────┘
+                                  │
+                     ┌────────────▼────────────┐
+                     │  Training Infrastructure │
+                     │--------------------------│
+                     │ Autograd Engine          │
+                     │ Optimizers               │
+                     │ Checkpointing            │
+                     │ Experiment Tracking      │
+                     └────────────┬─────────────┘
+                                  │
+                   ┌──────────────▼──────────────┐
+                   │ Distributed Runtime          │
+                   │------------------------------│
+                   │ Multiprocessing Workers      │
+                   │ Gradient Synchronization     │
+                   │ Communication Profiling      │
+                   │ Scaling Simulation           │
+                   └──────────────┬──────────────┘
+                                  │
+                    ┌─────────────▼─────────────┐
+                    │ Serving & Observability   │
+                    │---------------------------│
+                    │ FastAPI Inference Server  │
+                    │ Streaming Generation      │
+                    │ Dashboard Metrics         │
+                    │ Memory Diagnostics        │
+                    │ Regression Detection      │
+                    └───────────────────────────┘
 ```
 
-## Planned Modules
+---
 
-| Module                | Purpose                                                   |
-| --------------------- | --------------------------------------------------------- |
-| System Profiler       | Inspect CPU, memory, GPU, Python, and runtime environment |
-| Experiment Tracker    | Log runs, metrics, configs, and artifacts                 |
-| Training Engine       | Train small models from first principles                  |
-| Distributed Simulator | Analyze communication and synchronization bottlenecks     |
-| Inference Runtime     | Serve models and measure latency/throughput               |
-| Evaluation Engine     | Compare model quality and system performance              |
-| Dashboard             | Visualize experiments, bottlenecks, and benchmarks        |
+## Benchmark Visualizations
+
+### Optimizer Convergence
+
+![Optimizer Benchmark](assets/benchmarks/optimizer_comparison.png)
+
+---
+
+### Distributed Runtime Scaling
+
+![Distributed Scaling](assets/benchmarks/distributed_runtime_scaling.png)
+
+---
+
+### Transformer Generation Benchmark
+
+![Transformer Benchmark](assets/benchmarks/transformer_generation_benchmark.png)
+
+---
+
+### Training Loss Convergence
+
+![Loss Curve](assets/benchmarks/mlp_loss_curve.png)
+
+---
+
+## Example Capabilities
+
+### Run Distributed Runtime
+
+```bash
+atlas run-distributed
+```
+
+### Train Transformer Components
+
+```bash
+atlas train
+```
+
+### Run Benchmarks
+
+```bash
+PYTHONPATH=. python scripts/benchmark_optimizers.py
+```
+
+```bash
+PYTHONPATH=. python scripts/benchmark_transformer_generation.py
+```
+
+---
+
+## Example Serving Endpoints
+
+### Inference API
+
+```text
+POST /predict
+```
+
+### Metrics API
+
+```text
+GET /metrics
+```
+
+### Dashboard API
+
+```text
+GET /dashboard
+```
+
+---
 
 ## Engineering Focus
 
 Atlas AI focuses on:
 
-* reproducible ML experiments
-* measurable system performance
-* distributed training behavior
-* memory and communication bottlenecks
-* practical AI infrastructure design
+- Distributed ML systems
+- Transformer inference engineering
+- Memory-aware infrastructure
+- Performance benchmarking
+- Observability systems
+- Scalable AI serving
+- Optimization diagnostics
+
+---
+
+## Current Research Areas
+
+- KV-cache optimization
+- Distributed synchronization overhead
+- Transformer memory scaling
+- Autoregressive inference latency
+- Streaming generation systems
+- Performance regression analysis
+
+---
+
+## Future Roadmap
+
+### Distributed Training
+
+- Asynchronous gradient synchronization
+- Tensor parallelism
+- Pipeline parallelism
+- Optimizer state sharding
+
+### Transformer Optimization
+
+- FlashAttention-style kernels
+- Quantization
+- Efficient attention mechanisms
+- Long-context optimization
+
+### Infrastructure Engineering
+
+- Prometheus integration
+- Grafana dashboards
+- Distributed tracing
+- GPU profiling
+- Cluster orchestration
+
+---
+
+## CI & Reliability
+
+Atlas AI includes:
+
+- Automated testing
+- Benchmark CI workflows
+- Regression detection
+- Performance validation
+
+GitHub Actions automatically:
+
+- Runs tests
+- Executes benchmarks
+- Validates infrastructure behavior
+
+---
+
+## Project Philosophy
+
+Atlas AI treats machine learning as a systems engineering problem.
+
+The project focuses on understanding how:
+
+- Communication affects scaling
+- Memory constrains transformers
+- Inference latency impacts serving
+- Optimization changes convergence
+- Observability improves reliability
+
+rather than only maximizing model accuracy.
+
+---
 
 ## License
 
 MIT
+
+---
+
+<div align="center">
+
+*Omprakash Sahani — ML Systems Engineer (Distributed Training · Optimization · Systems)*
+
+</div>

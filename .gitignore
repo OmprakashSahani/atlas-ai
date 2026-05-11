@@ -222,3 +222,6 @@ runs/
 
 # Model checkpoints
 checkpoints/
+
+# Benchmark history outputs
+benchmark_history/

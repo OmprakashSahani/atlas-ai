@@ -83,6 +83,31 @@ The project is built from first principles to explore how modern AI systems beha
 
 ---
 
+## System Architecture
+
+```mermaid
+flowchart TB
+
+    A[Atlas AI]
+
+    A --> B[Training Infrastructure]
+    A --> C[Transformer Stack]
+    A --> D[Distributed Runtime]
+    A --> E[Serving & Observability]
+    A --> F[Performance Engineering]
+
+    B --> B1[Autograd · Optimizers · Checkpointing]
+
+    C --> C1[Embeddings · Attention · KV Cache]
+
+    D --> D1[Workers · Gradient Sync · Communication]
+
+    E --> E1[FastAPI · Metrics · Dashboard]
+
+    F --> F1[Benchmarks · Regression Detection · CI]
+```
+---
+
 ## Architecture Overview
 
 ```text
